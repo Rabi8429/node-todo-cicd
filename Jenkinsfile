@@ -15,10 +15,10 @@ pipeline{
             }
             stage('Docker hub push') {
                 steps{
-                    withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-                    sh 'docker login -u rabi4450 -p ${dockerhubpwd}'
+                    withCredentials([usernamePassword(credentialsId: 'dockerhubpwd', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                     echo "Using username ${USERNAME} with password ${PASSWORD}"
                     
-}
+                 }
           
                     sh 'docker push rabi4450/node-todo-test'
                 }
